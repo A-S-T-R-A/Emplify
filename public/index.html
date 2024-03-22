@@ -5,12 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
+    <!-- <link rel="stylesheet" href="./styles.css"> -->
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=PT+Serif:wght@400;700&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;600&family=PT+Serif:wght@400;700&display=swap');
 
         body * {
             margin: 0;
@@ -161,52 +160,113 @@
 
         .employment-item ul {
             padding-left: 20px;
-        }
+        } */
     </style>
 </head>
 
 <body>
     <div class="wrapper">
-        <div class="subWrapper" id="pdfContainer">
-            <div class="container">
-                <div class="left-column">
-                    <div class="leftside-name-block">
-                        <p class="leftside-name-block-text">Vadim Halian</p>
+        <div class="subWrapper" id="pdfContainer" style="display: flex;
+        align-items: flex-start;
+        margin: 0;
+        padding: 0;
+        font-family: 'Lato', sans-serif;
+        font-size: 12px;
+        line-height: 20px; ">
+            <div class="container" style="display: grid;
+            grid-template-columns: 1fr 2fr;
+            width: 210mm;
+            height: 297mm;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+                <div class="left-column" style="padding: 40px;
+                background-color: rgb(231, 231, 231);">
+                    <div class="leftside-name-block" style="display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin-bottom: 30px;">
+                        <p class="leftside-name-block-text" style="font-size: 24px;
+                        font-weight: bolder;
+                        font-family: 'Arial';">Vadim Halian</p>
                         <p>—</p>
-                        <p class="leftside-name-subtitle-block-text">FRONT END DEVELOPER&nbsp;&nbsp;&nbsp;( &nbsp;5
+                        <p class="leftside-name-subtitle-block-text" style="    font-size: 10px;
+                        ">FRONT END DEVELOPER&nbsp;&nbsp;&nbsp;( &nbsp;5
                             YEARS&nbsp;&nbsp;&nbsp;)</p>
                     </div>
-                    <div class="leftside-content-block">
-                        <p class="leftside-content-block-title">Details</p>
-                        <p class="leftside-content-block-text">Chisinau</p>
-                        <p class="leftside-content-block-text">Moldova</p>
-                        <p class="leftside-content-block-text">+37360902743</p>
-                        <p class="leftside-content-block-text">vadym.h.dev@gmail.com</p>
+                    <div class="leftside-content-block" style="    padding-left: 20px;
+                    display: flex;
+                    flex-direction: column;">
+                        <p class="leftside-content-block-title" style="    font-weight: bold;
+                        margin-bottom: 8px;
+                        font-family: 'Arial';">Details</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">Chisinau</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">Moldova</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">+37360902743</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">vadym.h.dev@gmail.com</p>
                     </div>
-                    <div class="leftside-content-block">
-                        <a class="leftside-content-block-title">Links</a>
-                        <a class="leftside-content-block-link" href="https://github.com/VadimGalian">github</a>
-                        <a class="leftside-content-block-link"
-                            href="https://www.linkedin.com/in/vadym-halian-44ab482a4/">linkedIn</a>
-                        <a class="leftside-content-block-link" href="https://t.me/vadymhd">telegram</a>
+                    <div class="leftside-content-block" style="padding-left: 20px;
+                    display: flex;
+                    flex-direction: column;">
+                        <a class="leftside-content-block-title" style="    font-weight: bold;
+                        margin-bottom: 8px;
+                        font-family: 'Arial';">Links</a>
+                        <a class="leftside-content-block-link" style="       cursor: pointer;
+                        color: black;
+                        text-decoration: none; font-size: 12px;
+                        margin-bottom: 5px;" href="https://github.com/VadimGalian">github</a>
+                        <a class="leftside-content-block-link" style="        cursor: pointer;
+                        color: black;
+                        text-decoration: none;font-size: 12px;
+                        margin-bottom: 5px;" href="https://www.linkedin.com/in/vadym-halian-44ab482a4/">linkedIn</a>
+                        <a class="leftside-content-block-link" style="       cursor: pointer;
+                        color: black;
+                        text-decoration: none; font-size: 12px;
+                        margin-bottom: 5px;" href="https://t.me/vadymhd">telegram</a>
                     </div>
-                    <div class="leftside-content-block">
-                        <p class="leftside-content-block-title">Skills</p>
-                        <p class="leftside-content-block-text">JavaScript</p>
-                        <p class="leftside-content-block-text">React</p>
-                        <p class="leftside-content-block-text">HTML</p>
-                        <p class="leftside-content-block-text">CSS</p>
+                    <div class="leftside-content-block" style="    padding-left: 20px;
+                    display: flex;
+                    flex-direction: column;">
+                        <p class="leftside-content-block-title " style="    font-weight: bold;
+                        margin-bottom: 8px;
+                        font-family: 'Arial';">Skills</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">JavaScript</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">React</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">HTML</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">CSS</p>
                     </div>
-                    <div class="leftside-content-block">
-                        <p class="leftside-content-block-title">Languages</p>
-                        <p class="leftside-content-block-text">English - Upper Intermediate</p>
-                        <p class="leftside-content-block-text">Ukrainian - Native</p>
+                    <div class="leftside-content-block" style="    padding-left: 20px;
+                    display: flex;
+                    flex-direction: column;">
+                        <p class="leftside-content-block-title" style="   font-weight: bold;
+                        margin-bottom: 8px;
+                        font-family: 'Arial';">Languages</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">English - Upper Intermediate</p>
+                        <p class="leftside-content-block-text" style="    font-size: 12px;
+                        margin-bottom: 5px;">Ukrainian - Native</p>
                     </div>
                 </div>
-                <div class="right-column">
-                    <div class="right-column-summary-block">
-                        <p class="right-block-title">Summary</p>
-                        <p class="right-column-summary-block-text">Motivated and skilled software engineer with more
+                <div class="right-column" style="    padding: 40px;
+                ">
+                    <div class="right-column-summary-block" style="   
+                    ">
+                        <p class="right-block-title" style="    padding-bottom: 10px;
+                        font-size: 20px;
+                        letter-spacing: 0.2px;
+                        font-weight: bold;
+                        font-family: 'Arial';">Summary</p>
+                        <p class="right-column-summary-block-text" style="    padding-bottom: 10px;
+                        ">Motivated and skilled software engineer with more
                             than 5
                             years of experience specializing in
                             <span style="font-weight: bold;">
@@ -215,7 +275,8 @@
                                 and &nbsp;Typescript.
                             </span>
                         </p>
-                        <p class="right-column-summary-block-text">
+                        <p class="right-column-summary-block-text" style="    padding-bottom: 10px;
+                        ">
                             Experienced in starting projects from scratch and configuring webpack, linters,
                             testing
                             environments, pipelines etc. Experienced in developing a scalable and maintainable
@@ -223,11 +284,18 @@
                         </p>
                     </div>
                     <div class="employment-item">
-                        <p class="right-block-title">Employment History</p>
+                        <p class="right-block-title" style="    padding-bottom: 10px;
+                        font-size: 20px;
+                        letter-spacing: 0.2px;
+                        font-weight: bold;
+                        font-family: 'Arial';">Employment History</p>
 
-                        <p class="right-block-text-position">Tech Lead Frontend Developer, Alar, Budva</p>
-                        <p class="right-block-text-date">February 2022 - Present</p>
-                        <ul>
+                        <p class="right-block-text-position" style="    font-weight: bold;
+                        font-family: 'Arial';">Tech Lead Frontend Developer, Alar, Budva</p>
+                        <p class="right-block-text-date" style="    color: #959BA6;
+                        ">February 2022 - Present</p>
+                        <ul style="    padding-left: 20px;
+                        ">
                             <li>Configured project from scratch (webpack, linters, CI/CD).</li>
                             <li>Developed architecture patterns, which significantly reduced onboarding time of new team
                                 members.</li>
@@ -245,9 +313,12 @@
                         </ul>
                     </div>
                     <div class="employment-item">
-                        <p class="right-block-text-position">Senior Frontend Developer, Alar, Budva</p>
-                        <p class="right-block-text-date">January 2021 - February 2022</p>
-                        <ul>
+                        <p class="right-block-text-position" style="    font-weight: bold;
+                        font-family: 'Arial';">Senior Frontend Developer, Alar, Budva</p>
+                        <p class="right-block-text-date" style="    color: #959BA6;
+                        ">January 2021 - February 2022</p>
+                        <ul style="    padding-left: 20px;
+                        ">
                             <li>Identified and optimized frontend performance bottlenecks to enhance the speed and
                                 efficiency of
                                 web applications.</li>
@@ -264,10 +335,13 @@
                         </ul>
                     </div>
                     <div class="employment-item">
-                        <p class="right-block-text-position">Frontend Developer
+                        <p class="right-block-text-position" style="    font-weight: bold;
+                        font-family: 'Arial';">Frontend Developer
                             Digicode, Kyiv</p>
-                        <p class="right-block-text-date">January 2019 - January 2021</p>
-                        <ul>
+                        <p class="right-block-text-date" style="    color: #959BA6;
+                        ">January 2019 - January 2021</p>
+                        <ul style="    padding-left: 20px;
+                        ">
                             <li>Identified and resolved front-end bugs, UI glitches and performance issues.</li>
                             <li>Collaborated with the team to implement new features based on project requirements.</li>
                             <li>Participated in code reviews, provided constructive feedback.</li>
@@ -276,48 +350,59 @@
                         </ul>
                     </div>
                     <div class="education-item">
-                        <p class="right-block-title">Education</p>
-                        <p class="right-block-text-position">Bachelor
+                        <p class="right-block-title" style="    padding-bottom: 10px;
+                        font-size: 20px;
+                        letter-spacing: 0.2px;
+                        font-weight: bold;
+                        font-family: 'Arial';">Education</p>
+                        <p class="right-block-text-position" style=" font-weight: bold;
+                        font-family: 'Arial';">Bachelor
                             Taras Shevchenko National University of Kyiv, Kyiv</p>
-                        <p class="right-block-text-date">September 2014 - July 2018</p>
+                        <p class="right-block-text-date" style="    color: #959BA6;
+                        ">September 2014 - July 2018</p>
                     </div>
                 </div>
             </div>
         </div>
         <div>
-            <button id="download" class="downloadBtn">Download PDF</button>
+            <button id="download" class="downloadBtn" style="    width: 200px;
+            height: 40px;
+            border: none;
+            cursor: pointer;
+            margin-top: 50px;
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;">Download PDF</button>
         </div>
     </div>
 
     <script>
-        document.getElementById('download').addEventListener('click', function () {
-            const { jsPDF } = window.jspdf;
-            const element = document.querySelector('#pdfContainer');
-            const pixelWidth = element.offsetWidth;
-            const mmWidth = pixelWidth * 0.264583;
-
-
-            const doc = new jsPDF({
-                orientation: 'p',
-                unit: 'mm',
-                format: [mmWidth, 297.6]
-            });
-
-            doc.setFont('sans serif');
-
-            const options = {
-                callback: function (doc) {
-                    doc.save('profile.pdf');
-                },
-                x: 0,
-                y: 0,
-                width: mmWidth,
-                windowWidth: element.scrollWidth
-            };
-
-            doc.html(element, options);
+        document.getElementById('download').addEventListener('click', async function () {
+            const container = document.querySelector('.subWrapper').innerHTML;
+            try {
+                const response = await fetch('/generate-pdf', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ content: container }),
+                });
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'document.pdf';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                } else {
+                    throw new Error('An error occurred during the PDF generation.');
+                }
+            } catch (error) {
+                console.error('PDF Generation Error:', error);
+            }
         });
-
 
         document.addEventListener('DOMContentLoaded', (event) => {
             let currentPlusElement = null;
