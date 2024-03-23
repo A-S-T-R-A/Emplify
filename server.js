@@ -3,7 +3,7 @@ const puppeteer = require("puppeteer")
 const app = express()
 const PORT = process.env.PORT || 3000
 
-app.use(express.json()) // bodyParser.json() является устаревшим, используйте express.json()
+app.use(express.json())
 
 app.post("/generate-pdf", async (req, res) => {
     console.log("Received request to generate PDF")
@@ -20,7 +20,7 @@ app.post("/generate-pdf", async (req, res) => {
         console.log("New page opened.")
 
         console.log("Setting content...")
-        await page.setContent("<h1>Hello World</h1>") // Простой контент для теста
+        await page.setContent("<h1>Hello World</h1>")
         console.log("Content set.")
 
         console.log("Generating PDF...")
