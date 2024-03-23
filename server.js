@@ -1,16 +1,12 @@
 const express = require("express")
 const puppeteer = require("puppeteer")
-const bodyParser = require("body-parser")
 const app = express()
 const PORT = process.env.PORT || 3000
-console.log("server is working")
 
-app.use(express.static("public"))
-app.use(bodyParser.json())
+app.use(express.json()) // bodyParser.json() является устаревшим, используйте express.json()
 
 app.post("/generate-pdf", async (req, res) => {
     console.log("Received request to generate PDF")
-    const content = req.body.content
 
     try {
         console.log("Launching browser...")
@@ -20,14 +16,11 @@ app.post("/generate-pdf", async (req, res) => {
         })
 
         console.log("Browser launched.")
-
         const page = await browser.newPage()
         console.log("New page opened.")
 
         console.log("Setting content...")
-        await page.setContent(content, {
-            waitUntil: "networkidle0",
-        })
+        await page.setContent("<h1>Hello World</h1>") // Простой контент для теста
         console.log("Content set.")
 
         console.log("Generating PDF...")
@@ -41,6 +34,7 @@ app.post("/generate-pdf", async (req, res) => {
             "Content-Type": "application/pdf",
             "Content-Disposition": 'attachment; filename="generated-document.pdf"',
         })
+
         console.log("Sending PDF to client...")
         res.send(pdf)
     } catch (error) {
