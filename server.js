@@ -11,7 +11,9 @@ app.post("/generate-pdf", async (req, res) => {
     const content = req.body.content
 
     try {
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        })
         const page = await browser.newPage()
 
         await page.setContent(content, {
