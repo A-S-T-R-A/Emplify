@@ -379,6 +379,7 @@
         document.getElementById('download').addEventListener('click', async function () {
             const container = document.querySelector('.subWrapper').innerHTML;
             try {
+
                 const response = await fetch('/generate-pdf', {
                     method: 'POST',
                     headers: {

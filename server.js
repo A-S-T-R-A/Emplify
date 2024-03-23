@@ -9,6 +9,7 @@ app.use(express.json())
 
 app.post("/generate-pdf", async (req, res) => {
     const content = req.body.content
+    console.log("Received content for PDF generation:", content)
 
     try {
         const browser = await puppeteer.launch({
