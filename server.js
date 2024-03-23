@@ -20,6 +20,7 @@ app.post("/generate-pdf", async (req, res) => {
                 "--disable-dev-shm-usage",
                 "--single-process",
             ],
+            executablePath: process.env.PUPPETEER_EXEC_PATH || null, // Принудительно указываем путь к исполняемому файлу
         })
         console.log("Browser launched.")
 
