@@ -3,6 +3,7 @@ const puppeteer = require("puppeteer")
 const bodyParser = require("body-parser")
 const app = express()
 const PORT = process.env.PORT || 3000
+console.log("server is working")
 
 app.use(express.static("public"))
 app.use(bodyParser.json())
@@ -20,7 +21,7 @@ app.post("/generate-pdf", async (req, res) => {
                 "--disable-dev-shm-usage",
                 "--single-process",
             ],
-            executablePath: process.env.PUPPETEER_EXEC_PATH || null, // Принудительно указываем путь к исполняемому файлу
+            executablePath: process.env.PUPPETEER_EXEC_PATH || null,
         })
         console.log("Browser launched.")
 

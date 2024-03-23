@@ -469,17 +469,17 @@
 
         let currentSelectedElement = null;
 
-        document.querySelectorAll('.subWrapper div').forEach(element => {
-            element.addEventListener('click', function (event) {
-                event.stopPropagation();
-                if (currentSelectedElement && currentSelectedElement !== this) {
-                    currentSelectedElement.style.boxShadow = '';
-                }
-                currentSelectedElement = this;
-                this.style.boxShadow = '0 0 1px black';
-                showStyles(this);
-            });
-        });
+        // document.querySelectorAll('.subWrapper div').forEach(element => {
+        //     element.addEventListener('click', function (event) {
+        //         event.stopPropagation();
+        //         if (currentSelectedElement && currentSelectedElement !== this) {
+        //             currentSelectedElement.style.boxShadow = '';
+        //         }
+        //         currentSelectedElement = this;
+        //         this.style.boxShadow = '0 0 1px black';
+        //         showStyles(this);
+        //     });
+        // });
 
     </script>
 </body>
