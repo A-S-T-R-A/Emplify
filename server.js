@@ -15,13 +15,10 @@ app.post("/generate-pdf", async (req, res) => {
     try {
         console.log("Launching browser...")
         const browser = await puppeteer.launch({
-            args: [
-                "--no-sandbox",
-                "--disable-setuid-sandbox",
-                "--disable-dev-shm-usage",
-                "--single-process",
-            ],
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+            executablePath: puppeteer.executablePath(),
         })
+
         console.log("Browser launched.")
 
         const page = await browser.newPage()
