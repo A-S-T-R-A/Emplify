@@ -165,43 +165,6 @@
 </head>
 
 <body>
-
-    <button id="generatePdfBtn">Generate PDF</button>
-
-    <script>
-        document.getElementById('generatePdfBtn').addEventListener('click', async () => {
-            try {
-                console.log('Sending request to generate PDF');
-                const response = await fetch('/generate-pdf', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({ content: '<h1>Hello World</h1>' }), // Example content, adjust as needed
-                });
-
-                if (response.ok) {
-                    const blob = await response.blob();
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'generated-document.pdf';
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    URL.revokeObjectURL(url);
-                    console.log('PDF generated and downloaded');
-                } else {
-                    console.error('Failed to generate PDF:', await response.text());
-                }
-            } catch (error) {
-                console.error('Error generating PDF:', error);
-            }
-        });
-    </script>
-
-</body>
-<!-- <body>
     <div class="wrapper">
         <div class="subWrapper" id="pdfContainer" style="display: flex;
         align-items: flex-start;
@@ -416,7 +379,6 @@
         document.getElementById('download').addEventListener('click', async function () {
             const container = document.querySelector('.subWrapper').innerHTML;
             try {
-                console.log('download fetch /generate-pdf')
                 const response = await fetch('/generate-pdf', {
                     method: 'POST',
                     headers: {
@@ -442,6 +404,8 @@
                 console.error('PDF Generation Error:', error);
             }
         });
+
+
 
 
         document.addEventListener('DOMContentLoaded', (event) => {
@@ -522,8 +486,6 @@
         // });
 
     </script>
-</body> -->
-
-
+</body>
 
 </html>
