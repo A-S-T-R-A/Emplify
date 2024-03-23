@@ -5,6 +5,10 @@ const PORT = process.env.PORT || 3000
 
 app.use(express.json())
 
+app.get("/", (req, res) => {
+    res.send("Server is running. Use POST /generate-pdf to generate a PDF.")
+})
+
 app.post("/generate-pdf", async (req, res) => {
     console.log("Received request to generate PDF")
 
