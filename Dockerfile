@@ -1,13 +1,12 @@
-FROM node:18-slim
-
+FROM node:17-alpine
 WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install --production
+RUN npm install
 
 COPY . .
 
-EXPOSE 8081
+EXPOSE 8080
 
 CMD ["node", "server.js"]
