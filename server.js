@@ -1,45 +1,23 @@
-const express = require("express")
 const puppeteer = require("puppeteer")
-const app = express()
-const PORT = process.env.PORT || 8080
-console.log("server is working")
 
-app.use(express.static("public"))
-app.use(express.json())
+async function downloadPDF() {
+    const browser = await puppeteer.launch({
+        args: ["--no-sandbox", "--disable-setuid-sandbox"],
+    })
+    const page = await browser.newPage()
 
-app.post("/generate-pdf", async (req, res) => {
-    const content = req.body.content
-    console.log("Received content for PDF generation:", content)
+    const url = "https://astra-emplify-65e2e0802fb3.herokuapp.com/my-document.pdf"
 
-    try {
-        const browser = await puppeteer.launch({ headless: false })
+    await page.goto(url, {
+        waitUntil: "networkidle0",
+    })
 
-        const page = await browser.newPage()
+    const pdfBuffer = await page.evaluate(() => document.body.innerText)
 
-        await page.setContent(content, {
-            waitUntil: "networkidle0",
-        })
+    const fs = require("fs")
+    fs.writeFileSync("downloaded-my-document.pdf", pdfBuffer, "base64")
 
-        const pdf = await page.pdf({ format: "A4", printBackground: true })
+    await browser.close()
+}
 
-        await browser.close()
-
-        res.set({
-            "Content-Type": "application/pdf",
-            "Content-Disposition": 'attachment; filename="my-document.pdf"',
-        })
-        res.send(pdf)
-    } catch (error) {
-        console.error("Error during PDF generation:", error)
-        res.status(500).send("An error occurred during the PDF generation.")
-    }
-})
-
-app.use((err, req, res, next) => {
-    console.error(err.stack)
-    res.status(500).send("Something broke!")
-})
-
-app.listen(PORT, () => {
-    console.log(`Server is running at http://localhost:${PORT}`)
-})
+downloadPDF().then(() => console.log("PDF успешно скачан!"))
