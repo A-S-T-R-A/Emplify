@@ -1,7 +1,7 @@
 const express = require("express")
 const puppeteer = require("puppeteer")
 const app = express()
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080
 console.log("server is working")
 
 app.use(express.static("public"))
@@ -32,6 +32,7 @@ app.post("/generate-pdf", async (req, res) => {
         })
         res.send(pdf)
     } catch (error) {
+        console.error("Error during PDF generation:", error)
         res.status(500).send("An error occurred during the PDF generation.")
     }
 })
