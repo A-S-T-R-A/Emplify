@@ -7,12 +7,12 @@ console.log("server is working")
 app.use(express.static("public"))
 app.use(express.json())
 
-app.get("/generate-pdf", async (req, res) => {
+app.post("/generate-pdf", async (req, res) => {
     const content = req.body.content
     console.log("Received content for PDF generation:", content)
 
     try {
-        const browser = await puppeteer.launch({ args: ["--no-sandbox"] })
+        const browser = await puppeteer.launch({ headless: false })
 
         const page = await browser.newPage()
 
