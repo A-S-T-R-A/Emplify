@@ -1,38 +1,15 @@
 const express = require("express")
-const puppeteer = require("puppeteer")
 const app = express()
 const PORT = process.env.PORT || 8080
-console.log("server is working")
+console.log("Server is working")
 
 app.use(express.static("public"))
 app.use(express.json())
 
-app.post("/generate-pdf", async (req, res) => {
+app.post("/download", async (req, res) => {
     const content = req.body.content
-    console.log("Received content for PDF generation:", content)
-
-    try {
-        const browser = await puppeteer.launch({ headless: false })
-
-        const page = await browser.newPage()
-
-        await page.setContent(content, {
-            waitUntil: "networkidle0",
-        })
-
-        const pdf = await page.pdf({ format: "A4", printBackground: true })
-
-        await browser.close()
-
-        res.set({
-            "Content-Type": "application/pdf",
-            "Content-Disposition": 'attachment; filename="my-document.pdf"',
-        })
-        res.send(pdf)
-    } catch (error) {
-        console.error("Error during PDF generation:", error)
-        res.status(500).send("An error occurred during the PDF generation.")
-    }
+    console.log("Received content from download:", content)
+    res.send("Received content: " + content)
 })
 
 app.use((err, req, res, next) => {
