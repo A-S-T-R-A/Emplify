@@ -12,7 +12,7 @@ app.post("/generate-pdf", async (req, res) => {
     console.log("Received content for PDF generation:", content)
 
     try {
-        const browser = await puppeteer.launch()
+        const browser = await puppeteer.launch({ args: ["--no-sandbox"] })
 
         const page = await browser.newPage()
 
