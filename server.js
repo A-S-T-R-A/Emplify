@@ -8,8 +8,6 @@ app.use(express.static("public"))
 app.use(express.json())
 
 app.get("/generate-pdf", async (req, res) => {
-    console.log("Received POST request for PDF generation")
-
     const content = req.body.content
     console.log("Received content for PDF generation:", content)
 
