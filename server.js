@@ -7,23 +7,34 @@ console.log("server is working")
 app.use(express.static("public"))
 app.use(express.json())
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-    next()
-})
-
-const fs = require("fs")
-
 app.post("/generate-pdf", async (req, res) => {
-    const staticPDF = fs.readFileSync("static-pdf-file.pdf")
+    const content = req.body.content
+    console.log("Received content for PDF generation:", content)
 
-    res.set({
-        "Content-Type": "application/pdf",
-        "Content-Disposition": 'attachment; filename="my-document.pdf"',
-    })
+    try {
+        const browser = await puppeteer.launch({
+            args: ["--no-sandbox", "--disable-setuid-sandbox"],
+        })
 
-    res.send(staticPDF)
+        const page = await browser.newPage()
+
+        await page.setContent(content, {
+            waitUntil: "networkidle0",
+        })
+
+        const pdf = await page.pdf({ format: "A4", printBackground: true })
+
+        await browser.close()
+
+        res.set({
+            "Content-Type": "application/pdf",
+            "Content-Disposition": 'attachment; filename="my-document.pdf"',
+        })
+        res.send(pdf)
+    } catch (error) {
+        console.error("Error during PDF generation:", error)
+        res.status(500).send("An error occurred during the PDF generation.")
+    }
 })
 
 app.use((err, req, res, next) => {
