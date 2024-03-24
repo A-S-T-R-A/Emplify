@@ -6,7 +6,7 @@ console.log("Server is working")
 app.use(express.static("public"))
 app.use(express.json())
 
-app.post("/download", async (req, res) => {
+app.post("/generate-pdf", async (req, res) => {
     const content = req.body.content
     console.log("Received content from download:", content)
     res.send("Received content: " + content)
